@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Demo</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <link rel="stylesheet" href="/css/jquery-ui.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="/css/jquery-ui.theme.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <script type="text/javascript" src="/js/jquery-ui.min.js">
+  </script>
+  <%= csrf_meta_tags %>
+  <%= yield :head %>
+</head>
+<body>
+	<div class="header"></div>
+	<ul class="menus_left">
+		<li> <%= link_to "Dashboard", dashboards_path %></li>
+		<li> <%= link_to "蜘蛛分析", spiders_path %></li>
+		<ul class="sub">
+			<li><%= link_to "概要分析", basic_spiders_path%></li>
+			<li><%= link_to "目录分析", folder_spiders_path %></li>
+			<li><%= link_to "蜘蛛抓取量", page_spiders_path %></li>
+			<li><%= link_to "自定义查询", custom_spiders_path %></li>
+		</ul>
+		<li> <%= link_to "路径分析", uri_searchs_path%></li>
+		<ul class="sub">
+			<li><%= link_to "登陆IP分析", login_query_uri_searchs_path %></li>
+			<li><%= link_to "跳转来源分析",  basic_sems_path %></li>
+		</ul>
+		<li> <%= link_to "状态码分析", statuscodes_path %></li>
+		<ul class="sub">
+			<li><%= link_to "用户状态码", user_statuscodes_path %></li>
+			<li><%= link_to "蜘蛛状态码",  spider_statuscodes_path %></li>
+		</ul>
+	</ul>
+	<div class="content">
+	<%= yield %>
+	</div>
+<script type="text/javascript">
+	$(function(){
+		var height = document.documentElement.clientHeight;
+		$("div.content").attr('style', 'height:'+(height-80)+'px')
+	})
+</script>
+</body>
+</html>

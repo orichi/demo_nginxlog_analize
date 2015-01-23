@@ -1,0 +1,17 @@
+<%= form_for(@vector_code) do |f| %>
+  <% if @vector_code.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@vector_code.errors.count, "error") %> prohibited this vector_code from being saved:</h2>
+
+      <ul>
+      <% @vector_code.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

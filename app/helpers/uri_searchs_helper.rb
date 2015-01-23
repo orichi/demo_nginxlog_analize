@@ -1,0 +1,2 @@
+module UriSearchsHelper
+end

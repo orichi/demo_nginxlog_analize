@@ -1,0 +1,45 @@
+<h1>状态码查询 日期: <%= @date%></h1>
+<p>
+	<label for="date">查询日期</label><input type="text" name="date" value="" id="date">
+	<input type="button" name="submit" value="查询" id="submit">
+</p>
+<table>
+  <tr>
+    <th align="left">日期</th>
+    <th align="left">访问次数</th>
+    <th align="left">uri目录</th>
+	<th align="left">状态码</th>
+	<!-- <th></th> -->
+  </tr>
+
+<% @vector_codes.each do |vector_code| %>
+  <tr>
+    <td><%#= vector_code.date %></td>
+    <td><%= vector_code.ips %></td>
+    <td><%= vector_code.uri_sub %></td>
+	<td><%= vector_code.code %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+<script type="text/javascript">
+$(function(){
+	$("#date").datepicker({
+		dateFormat: "yymmdd"
+	})
+	
+	$("#submit").click(function(){
+		var datestring = $("#date").val();
+		if (datestring.match(/201[4|5][0|1]\d[0-3]\d/)){
+			var uri = "<%= basic_spiders_path %>"
+			window.location = uri + "?m_date="+ datestring;
+		}else{
+			alert("请选择日期");
+		}
+	})
+})
+	
+</script>
+

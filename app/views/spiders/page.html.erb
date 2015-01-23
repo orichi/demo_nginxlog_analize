@@ -1,0 +1,54 @@
+<% content_for :head do %>
+	<script type="text/javascript" src="/js/highcharts.js"></script>
+	<script type="text/javascript" src="/js/exporting.js"></script>
+<% end %>
+
+
+<div id="container" style="width:1000px;height: 500px;position: absolute"></div>
+
+		<script type="text/javascript">
+$(function () {
+        $('#container').highcharts({
+            title: {
+                text: '不同蜘蛛抓取量',
+                x: -20 //center
+            },
+            subtitle: {
+                text: '显示抓取数量最多的20种蜘蛛',
+                x: -20
+            },
+            xAxis: {
+                categories: ['<%=raw @data.map(&:bot_agent).join("','") %>'],
+				labels: {
+					rotation: -45,
+					align: 'right'
+				}
+            },
+            yAxis: {
+                title: {
+                    text: '抓取次数'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                valueSuffix: '次'
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: '抓取量',
+                data: [<%= @data.map(&:ids).join(',') %>]
+            }]
+        });
+    });
+    
+
+		</script>

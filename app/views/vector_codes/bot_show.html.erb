@@ -1,0 +1,25 @@
+<h1>状态码查询 日期: <%= @date%> UA: <%=@bot%></h1>
+
+<table>
+  <tr>
+    <th align="left">日期</th>
+    <th align="left">访问次数</th>
+    <th align="left">uri目录</th>
+	<th align="left">状态码</th>
+	<!-- <th></th> -->
+  </tr>
+
+<% @vector_codes.each do |vector_code| %>
+  <tr>
+    <td><%#= vector_code.date %></td>
+    <td><%= vector_code.ips %></td>
+    <td><%= vector_code.uri_sub %></td>
+	<td><%= vector_code.code %></td>
+
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vector code', new_vector_code_path %>
